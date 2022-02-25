@@ -14,7 +14,7 @@ For further information please refer to the [project's website](https://polytemp
 - Clone the repository and install the dependencies:
 
       git clone https://github.com/philippekocher/polytempoWeb.git
-      cd server
+      cd polytempoWeb/server
       npm install			
 
 - Put all your polytempo files in the folder 'files'.
