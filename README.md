@@ -9,18 +9,18 @@ For further information please refer to the [project's website](https://polytemp
 
 ## Using PolytempoWeb in a local network
 
-1. Download Node.js from [https://nodejs.org](https://nodejs.org) and run the installer.
+Download Node.js from [https://nodejs.org](https://nodejs.org) and run the installer.
 
-2. cd into the 'server' directory and execute the following command
+cd into the 'server' directory and execute the following command:
 
     npm install			
 
-3. Put all your polytempo files in the folder 'files'
+Put all your polytempo files in the folder 'files'
 
-4. Start the server
+Start the server:
 
     npm start
 
-5. In the terminal, the server indicates the IP address at which it is running. To access PolytempoApp from any device connected to the local network, enter this IP address in a web browser.
+In the terminal, the server indicates the IP address at which it is running. To access PolytempoApp from any device connected to the local network, enter this IP address in a web browser.
 
-6. Stop the server with ctrl+c
+Stop the server with ctrl+c
