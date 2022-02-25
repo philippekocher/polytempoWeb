@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Polytempo Server</title>
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+		<script type="application/javascript" src="js/polytempo.js"></script>
+  </head>
+	<body>
+		<div class="menubar">
+			<div id="filelist" title="Show File List"></div>
+      <div id="settings" title="Show Settings"></div>
+    </div>
+  	<div class="mask"></div>
+    <div class="popup filelist">
+     	<div class="group" id="filelistgroup"></div>
+		</div>
+    <div class="popup settings arrow">
+    	<div class="group">
+				<label class="checkboxcontainer">Show Visual Metro
+					<input type="checkbox" id="showVisualMetro" checked="true">
+					<span class="checkmark"></span>
+				</label>
+				<label class="slidecontainer">Size
+  				<input type="range" min="5" max="100" value="50" class="slider" id="visualMetroSize">
+				</label>
+		</div>
+		<div class="group">
+				<label class="checkboxcontainer">Show Auxiliary View
+					<input type="checkbox" id="showAuxView" checked="true">
+					<span class="checkmark"></span>
+				</label>
+			</div>
+    	<div class="group">
+				<label class="checkboxcontainer">Activate Audio Click
+					<input type="checkbox" id="activateAudio">
+					<span class="checkmark"></span>
+				</label>
+				<p style="font-size: 0.75em">Many browsers only activate audio playback after user interaction. Whenever you do not hear anything, even though this setting is activated, click somewhere on the screen or press a key.</p>
+			</div>
+    	<div class="group">
+				<label>Instance Name</label>
+				<br>
+				<input type="text" id="instanceName">
+    	</div>
+		</div>
+		<div class="auxiliary">
+			<input id="start" type="button" value="Start / Stop" />
+			<div style="display: flex; justify-content: space-between">
+				<input id="rtl" type="button" value="RTL" style="flex-basis: 49%" />
+				<input id="rtb" type="button" value="RTB" style="flex-basis: 49%" />
+			</div>
+			<br />
+			<label for="markerbox">Marker</label>
+			<input id="markerbox" type="text" value="--" />
+			<label for="timebox">Time</label>
+			<input id="timebox" type="text" />
+			<label for="tempofactorbox">Tempo&nbsp;x</label>
+			<input id="tempofactorbox" type="text" value="1" />
+			<div id="network"></div>
+		</div>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+* {
+	font-family: sans-serif;
+	text-decoration: none;
+	margin : 0px;
+	padding : 0px;
+}
+
+.menubar {
+	position: fixed;
+	width: 100%;
+	height: 30px;
+  overflow: hidden;
+	border-bottom: 1px solid #000;
+}
+
+.menubar div {
+  float: left;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin: 5px 5px 5px 10px;
+}
+
+.menubar div:hover {
+	cursor: pointer;
+}
+
+.menubar div#settings {
+   background-image: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 489.802 489.802'%3E%3Cpath d='M20.701,281.901l32.1,0.2c4.8,24.7,14.3,48.7,28.7,70.5l-22.8,22.6c-8.2,8.1-8.2,21.2-0.2,29.4l24.6,24.9 c8.1,8.2,21.2,8.2,29.4,0.2l22.8-22.6c21.6,14.6,45.5,24.5,70.2,29.5l-0.2,32.1c-0.1,11.5,9.2,20.8,20.7,20.9l35,0.2 c11.5,0.1,20.8-9.2,20.9-20.7l0.2-32.1c24.7-4.8,48.7-14.3,70.5-28.7l22.6,22.8c8.1,8.2,21.2,8.2,29.4,0.2l24.9-24.6 c8.2-8.1,8.2-21.2,0.2-29.4l-22.6-22.8c14.6-21.6,24.5-45.5,29.5-70.2l32.1,0.2c11.5,0.1,20.8-9.2,20.9-20.7l0.2-35 c0.1-11.5-9.2-20.8-20.7-20.9l-32.1-0.2c-4.8-24.7-14.3-48.7-28.7-70.5l22.8-22.6c8.2-8.1,8.2-21.2,0.2-29.4l-24.6-24.9 c-8.1-8.2-21.2-8.2-29.4-0.2l-22.8,22.6c-21.6-14.6-45.5-24.5-70.2-29.5l0.2-32.1c0.1-11.5-9.2-20.8-20.7-20.9l-35-0.2 c-11.5-0.1-20.8,9.2-20.9,20.7l-0.3,32.1c-24.8,4.8-48.8,14.3-70.5,28.7l-22.6-22.8c-8.1-8.2-21.2-8.2-29.4-0.2l-24.8,24.6 c-8.2,8.1-8.2,21.2-0.2,29.4l22.6,22.8c-14.6,21.6-24.5,45.5-29.5,70.2l-32.1-0.2c-11.5-0.1-20.8,9.2-20.9,20.7l-0.2,35 C-0.099,272.401,9.201,281.801,20.701,281.901z M179.301,178.601c36.6-36.2,95.5-35.9,131.7,0.7s35.9,95.5-0.7,131.7 s-95.5,35.9-131.7-0.7S142.701,214.801,179.301,178.601z'/%3E%3C/svg%3E" );
+}
+.menubar div#filelist {
+   background-image: url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 458.18 458.18'%3E %3Cpath d='M36.09,5.948c-18.803,0-34.052,15.248-34.052,34.051c0,18.803,15.249,34.052,34.052,34.052 c18.803,0,34.052-15.25,34.052-34.052C70.142,21.196,54.893,5.948,36.09,5.948z'/%3E %3Cpath d='M147.537,80h268.604c22.092,0,40-17.908,40-40s-17.908-40-40-40H147.537c-22.092,0-40,17.908-40,40S125.445,80,147.537,80z'/%3E %3Cpath d='M36.09,132.008c-18.803,0-34.052,15.248-34.052,34.051s15.249,34.052,34.052,34.052c18.803,0,34.052-15.249,34.052-34.052 S54.893,132.008,36.09,132.008z'/%3E %3Cpath d='M416.142,126.06H147.537c-22.092,0-40,17.908-40,40s17.908,40,40,40h268.604c22.092,0,40-17.908,40-40 S438.233,126.06,416.142,126.06z'/%3E %3Cpath d='M36.09,258.068c-18.803,0-34.052,15.248-34.052,34.051c0,18.803,15.249,34.052,34.052,34.052 c18.803,0,34.052-15.249,34.052-34.052C70.142,273.316,54.893,258.068,36.09,258.068z'/%3E %3Cpath d='M416.142,252.119H147.537c-22.092,0-40,17.908-40,40s17.908,40,40,40h268.604c22.092,0,40-17.908,40-40 S438.233,252.119,416.142,252.119z'/%3E %3Cpath d='M36.09,384.128c-18.803,0-34.052,15.248-34.052,34.051s15.249,34.053,34.052,34.053c18.803,0,34.052-15.25,34.052-34.053 S54.893,384.128,36.09,384.128z'/%3E %3Cpath d='M416.142,378.18H147.537c-22.092,0-40,17.908-40,40s17.908,40,40,40h268.604c22.092,0,40-17.908,40-40 S438.233,378.18,416.142,378.18z'/%3E %3C/svg%3E" );
+}
+
+.mask {
+	position: fixed;
+	top: 30px;
+  background-color: #ffffffcc;
+	width: 100%;
+	z-index: 10;
+}
+
+.arrow {
+/* 
+  do with sass;
+ */
+}
+
+.popup {
+	position: absolute;
+	display: none;
+	top: 38px;
+	max-width: 400px;
+	border: 1px solid black;
+	border-radius: 7px;
+	background-color: #f8f8f8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	z-index: 11;
+}
+
+.popup.filelist {
+	left: 5px;
+}
+
+.popup.settings {
+	left: 40px;
+}
+
+.popup p {
+	padding: 0.5em 0 0.5em;
+}
+
+.group {
+	border: 1px solid #eee;
+	background-color: #fff;
+	margin: 1em 0 0 0;
+	padding: 1em 2.5em 0.5em 2.5em;
+}
+
+.group:first-child {
+	border-top-left-radius: 9px;
+	border-top-right-radius: 9px;
+	margin-top: 0;
+}
+
+.group:last-child {
+	border-bottom-left-radius: 9px;
+	border-bottom-right-radius: 9px;
+	padding-bottom: 1em;
+}
+
+.group input {
+	width: 100%;
+}
+
+/* Customize the label (the checkboxcontainer) */
+.checkboxcontainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  padding-top: 5px;
+  margin-bottom: 12px;
+  cursor: pointer;
+/* 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+ */
+}
+
+/* Hide the browser's default checkbox */
+.checkboxcontainer input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkboxcontainer:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkboxcontainer input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkboxcontainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkboxcontainer .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;   
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: #2196f3;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #2196f3;
+  cursor: pointer;
+}
+
+/* ------------------------------------------ */
+
+#visualMetronomeCanvas {
+  position: fixed;
+	left: 0px;
+	top: 30px;
+}
+
+#regionCanvas {
+  position: fixed;
+	left: 50px;
+	top: 80px;
+  z-index: 1;
+	background-color: white;
+}
+
+.auxiliary {
+	position: fixed;
+/* 	display: flex; */
+	flex-direction: column;
+	top: 30px;
+	right: 0px;
+	width: 120px;
+	height: 100%;
+	padding: 10px 10px 0 10px;
+	border-left: 1px solid #000;
+	font-size: 0.75em;
+}
+
+.auxiliary input[type=button] {
+	cursor: pointer;
+	border-radius: 40px;
+	margin-bottom: 5px;
+	background-image: linear-gradient(#555, #000);
+}
+
+.auxiliary label {}
+
+.auxiliary input {
+	border: 0;
+	border-radius: 5px;
+/* 
+	width: 110px;
+ */
+	margin: 0px 0px 10px 0px;
+	padding: 5px; /* safari on ios needs extra padding */
+	background-color: black;
+	color: white;
+}
+
+#markerbox {
+	font-size: 2.8em;
+	height: 50px;
+}
+
+#network {
+	display: none;
+	margin-top: 10px;
+}
+
+.networkstate {
+	padding: 5px;
+}
+.networkstate#no {
+	background-color: orangered;
+}
+.networkstate#yes {
+	background-color: lightgreen;
+}
+.networkstate#pending {
+	background-color: yellow;
+}

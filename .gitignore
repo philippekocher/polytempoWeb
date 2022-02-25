@@ -1,0 +1,8 @@
+# Exclude dependency directories
+**/node_modules/
+
+# Exclude OS X folder attributes
+.DS_Store
+
+# Exclude Files
+files/
