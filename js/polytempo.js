@@ -699,8 +699,9 @@ function parseEvent(item) {
 	if(typeof(event) !== 'object') return null;
 
 	event.type = eventType;
- 	if(event.time != null)     event.time = event.time * 1000.0;
-	return event;
+ 	if(event.time)  event.time = event.time * 1000.0;
+	if(event.defer) event.time += event.defer * 1000.0;
+ 	return event;
 }
 
 function executePtScoreInit() {

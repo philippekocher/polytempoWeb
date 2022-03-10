@@ -48,7 +48,10 @@ socket.on("timeSyncReply", data => {
 	}
 });
 
-socket.on("event", event => executeEvent(event));
+socket.on("event", event => {
+	if(event.defer) event.timeTag += event.defer * 1000.0;
+	executeEvent(event);
+});
 
 socket.on('disconnect', () => {  
 	networkState = 0;
