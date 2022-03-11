@@ -23,6 +23,6 @@ For further information please refer to the [project's website](https://polytemp
 
       npm start
 
-- In the terminal, the server indicates the IP address at which it is running. To access PolytempoApp from any device connected to the local network, enter this IP address in a web browser.
+- In the terminal, the server indicates the IP address at which it is running. To access PolytempoWeb from any device connected to the local network, enter this IP address in a web browser.
 
 - Stop the server with ctrl+c
