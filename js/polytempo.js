@@ -413,6 +413,8 @@ function animate() {
 		pos = (time  - currentBeatEvent.timeTag) / (currentBeatEvent.duration * 1000 / currentBeatEvent.durationFactor);
 		
 		if(pos > 1.0 || pos < 0.0) pos = 0.5;
+    if (pattern < 3 || pattern == 10 || pattern == 20) pos *= 0.5;
+    if (pattern < 3) pos += 0.5;
     rectpos = 50 + Math.pow(Math.abs((pos * 2 - 1)), 2) * (visualMetroLength-50);
 
 		if(pattern == 11 || pattern == 1 ||
