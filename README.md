@@ -26,3 +26,12 @@ For further information please refer to the [project's website](https://polytemp
 - In the terminal, the server indicates the IP address at which it is running. To access PolytempoWeb from any device connected to the local network, enter this IP address in a web browser.
 
 - Stop the server with ctrl+c
+
+
+## Combining PolytempoWeb and PolytempoNetwork
+
+PolytempoWeb can synchronise with instances of the standalone application PolytempoNetwork (Version 0.7.0 and above) within the same local network.
+
+One instance of PolytempoNetwork must be declared the "master". All other instances on the network, whether PolytempoNetwork or PolytempoWeb, follow this master instance in perfect sync. Any network latency will be compensated.
+
+If no master instance is found on the local network, the NodeJS server automatically takes over this role and synchronises all instances of PolytempoWeb with each other. Note that PolytempoWeb cannot be the master instance itself.
