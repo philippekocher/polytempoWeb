@@ -1,3 +1,4 @@
+const serverPort = 47521;
 const documentDirectory = "files/";
 let root, scoreFile;
 
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	vars[key] = value;
 	});
 
-	if(location.port == 47522) {
+	if(location.port == serverPort) {
 		let script = document.createElement('script');
 		script.type="application/javascript";
 		script. src="socket.io/socket.io.js";
