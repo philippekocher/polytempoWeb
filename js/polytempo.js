@@ -543,6 +543,10 @@ function executeEvent(event) {
 		
 		else if(event.type == "loadImage") loadImage(event);
 		
+		//else if(event.type == "loadSound") loadSound(event);      // needed to populate an array of soundfiles, same as with images
+        
+        	else if(event.type == "playSound") playSound(event);        // experimental new feature
+		
 		else if(event.type == "addRegion") regions[event.regionID] = event;
 		
 		else if(event.type == "addSection") addSection(event);
@@ -647,6 +651,32 @@ function text(event) {
 	regionContext.font = (region[3]) + 'px serif';
 	regionContext.fillText(event.value,region[0],region[1],region[2]);
 }
+
+/* ----------------------------------------------------------------------
+	sounds
+	------------------------------------------------------------------------*/
+
+const sounds = {};
+
+/* Analogous to images{}
+
+// e.g. {"loadSound": {"url": "freejazz.wav", "soundID": 5}},
+function loadSound(event) {                   
+	const audio = new Audio();
+    audio.src = documentDirectory+root+event.url;
+	sounds[event.soundID] = audio;
+}
+
+*/
+
+// e.g.  {"playSound": {"url": "freejazz.wav", "time": 4.0}},
+function playSound(event) {
+    	const audio = new Audio();
+	audio.src = documentDirectory+root+event.url;
+	//sounds[event.soundID] = audio;
+    	audio.play();
+}
+ 
 
 /* ----------------------------------------------------------------------
 	score
