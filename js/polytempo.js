@@ -653,6 +653,32 @@ function text(event) {
 }
 
 /* ----------------------------------------------------------------------
+	sounds
+	------------------------------------------------------------------------*/
+
+const sounds = {};
+
+/* Analogous to images{}
+
+// e.g. {"loadSound": {"url": "freejazz.wav", "soundID": 5}},
+function loadSound(event) {                   
+	const audio = new Audio();
+    audio.src = documentDirectory+root+event.url;
+	sounds[event.soundID] = audio;
+}
+
+*/
+
+// e.g.  {"playSound": {"url": "freejazz.wav", "time": 4.0}},
+function playSound(event) {
+    	const audio = new Audio();
+	audio.src = documentDirectory+root+event.url;
+	//sounds[event.soundID] = audio;
+    	audio.play();
+}
+ 
+
+/* ----------------------------------------------------------------------
 	score
 	------------------------------------------------------------------------*/
 
