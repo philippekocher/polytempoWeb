@@ -543,6 +543,10 @@ function executeEvent(event) {
 		
 		else if(event.type == "loadImage") loadImage(event);
 		
+		//else if(event.type == "loadSound") loadSound(event);      // needed to populate an array of soundfiles, same as with images
+        
+        	else if(event.type == "playSound") playSound(event);        // experimental new feature
+		
 		else if(event.type == "addRegion") regions[event.regionID] = event;
 		
 		else if(event.type == "addSection") addSection(event);
