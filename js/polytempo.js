@@ -543,9 +543,9 @@ function executeEvent(event) {
 		
 		else if(event.type == "loadImage") loadImage(event);
 		
-		//else if(event.type == "loadSound") loadSound(event);      // needed to populate an array of soundfiles, same as with images
+		else if(event.type == "loadAudio") loadAudio(event);         // loads audiofile onto audios{} array
         
-        	else if(event.type == "playSound") playSound(event);        // experimental new feature
+        else if(event.type == "audio") audio(event);                 // plays audiofile based on ID
 		
 		else if(event.type == "addRegion") regions[event.regionID] = event;
 		
@@ -653,30 +653,27 @@ function text(event) {
 }
 
 /* ----------------------------------------------------------------------
-	sounds
+	audios
 	------------------------------------------------------------------------*/
 
-const sounds = {};
+const audios = {};
 
-/* Analogous to images{}
-
-// e.g. {"loadSound": {"url": "freejazz.wav", "soundID": 5}},
-function loadSound(event) {                   
+// e.g. {"loadAudio": {"url": "freejazz.wav", "soundID": 5}},
+function loadAudio(event) {                   
 	const audio = new Audio();
     audio.src = documentDirectory+root+event.url;
-	sounds[event.soundID] = audio;
+	audios[event.audioID] = audio;
+    //audio.play();
 }
 
-*/
 
-// e.g.  {"playSound": {"url": "freejazz.wav", "time": 4.0}},
-function playSound(event) {
-    	const audio = new Audio();
-	audio.src = documentDirectory+root+event.url;
-	//sounds[event.soundID] = audio;
-    	audio.play();
+
+// e.g.  {"playSound": {"value": 5, "time": 4.0}},
+function audio(event) {
+	const audio = new Audio();
+    audio.src = audios[event.value].src;
+	audio.play();
 }
- 
 
 /* ----------------------------------------------------------------------
 	score
