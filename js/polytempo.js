@@ -544,6 +544,10 @@ function executeEvent(event) {
 		
 		else if(event.type == "loadImage") loadImage(event);
 		
+		else if(event.type == "loadAudio") loadAudio(event);         // loads audiofile onto audios{} array
+        
+        else if(event.type == "audio") audio(event);                 // plays audiofile based on ID
+		
 		else if(event.type == "addRegion") regions[event.regionID] = event;
 		
 		else if(event.type == "addSection") addSection(event);
@@ -647,6 +651,29 @@ function text(event) {
 	regionContext.textBaseline = 'hanging';
 	regionContext.font = (region[3]) + 'px serif';
 	regionContext.fillText(event.value,region[0],region[1],region[2]);
+}
+
+/* ----------------------------------------------------------------------
+	audios
+	------------------------------------------------------------------------*/
+
+const audios = {};
+
+// e.g. {"loadAudio": {"url": "freejazz.wav", "soundID": 5}},
+function loadAudio(event) {                   
+	const audio = new Audio();
+    audio.src = documentDirectory+root+event.url;
+	audios[event.audioID] = audio;
+    //audio.play();
+}
+
+
+
+// e.g.  {"playSound": {"value": 5, "time": 4.0}},
+function audio(event) {
+	const audio = new Audio();
+    audio.src = audios[event.value].src;
+	audio.play();
 }
 
 /* ----------------------------------------------------------------------
