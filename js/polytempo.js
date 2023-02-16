@@ -1,6 +1,6 @@
 const serverPort = 47521;
 const documentDirectory = "files/";
-let root, scoreFile;
+let root = "", scoreFile;
 
 let keycode = 0;
 let networkMode = false;
@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	regionCanvas  = document.createElement('canvas');
 	regionCanvas.setAttribute('id','regionCanvas');
 	document.body.append(regionCanvas);
+	
+  regionContext = regionCanvas.getContext('2d', { alpha: false });
+	regionContext.imageSmoothingEnabled = false;
 
 	window.onresize = resizeContent;
 
@@ -397,7 +400,6 @@ function run() {
 let requestNextFrame = function(callback) {
 	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
 	function(callback) {
-		console.log('..');
 	  window.setTimeout(callback, 1000 / 60); // 60 frames per second
 	};
 }();
@@ -569,6 +571,8 @@ const regions = {};
 function addSection(event) {
 	const img = images[event.imageID];
 	const section = event.rect;
+	
+	if(!img) return;
 
 	if(!img.complete) {
 		// retry in 500 ms
@@ -581,7 +585,7 @@ function addSection(event) {
 
 		event.rect = section;
 
-		sections[event.sectionID] = event;
+		sections[event.sectionID] = event;		
 	}
 }
 
@@ -592,6 +596,7 @@ function loadImage(event) {
 }
 
 function getRegion(regionID) {
+	if(!regions[regionID]) return;
 	const region = regions[regionID].rect;
 	const dimensions = [];
 	dimensions[0] = region[0] * regionCanvas.width;
@@ -608,11 +613,27 @@ function image(event) {
 	// erase previous content
 	regionContext.fillStyle = "white";
 	regionContext.fillRect(region[0], region[1], region[2], region[3]);
+	
+	let image;
+	let section = [0,0,1,1];
 
 	const sectionEvent = sections[event.sectionID];
-	if(sectionEvent == null) return;
-
-	const section = sectionEvent.rect;
+	if(sectionEvent) {
+		image = images[sectionEvent.imageID];
+		section = sectionEvent.rect;
+	} else {
+		image = images[event.imageID];
+		if(event.rect) section = event.rect;
+		if(image) {
+			section[0] = section[0] * image.width;
+			section[1] = section[1] * image.height;
+			section[2] = section[2] * image.width;
+			section[3] = section[3] * image.height;
+		}
+	};
+	
+	if(!image) return;
+	
 	const sectionRatio = section[2] / section[3];
 	const regionRatio  = region[2] / region[3];
 	let dx, dy;
@@ -626,7 +647,7 @@ function image(event) {
 	}
 
 	// draw new content
-	regionContext.drawImage(images[sectionEvent.imageID],
+	regionContext.drawImage(image,
 													section[0],
 													section[1],
 													section[2],
@@ -722,9 +743,6 @@ function waitForImages() {
 			return;
 		}
 	}
-
-  regionContext = regionCanvas.getContext('2d', { alpha: false });
-	regionContext.imageSmoothingEnabled = false;
 
  	returnToBeginning();
 }
