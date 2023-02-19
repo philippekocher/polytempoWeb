@@ -1,6 +1,6 @@
 {
   "name": "polytemposerver",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A NodeJS server for polytempo",
   "main": "app.js",
   "scripts": {
