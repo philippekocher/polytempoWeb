@@ -213,6 +213,8 @@ let timeSetTime = 0;
 let currentMarker = '';
 let currentScoreTime= 0;
 let createEvent = (type, value) => ({type: type, value: value, timeTag: getTime()});
+let eventIndex;
+let firstBeatIndex;
 
 function handleUserInput(type, value) {
 	let scoreTime;
@@ -322,38 +324,40 @@ function jumpToTime(time) {
 
 	let eventsBeforeStart = [];
 	let regionsBeforeStart = {};
-	let nextDownBeat;
-	let lastMarker;
+	let nextMarker;
 
-	//find next downbeat or next cue
+	// find next marker
 	for(let i=0; i<ptScoreDefault.length; i++) {
 		let event = ptScoreDefault[i];
-		if(event.time >= time && event.type === "beat" && (event.pattern < 20 || event.cue))
+		if(event.time >= time && event.type == "marker")
 		{
-			nextDownBeat = event;
-
-			//find the first event with the same time as the next downbeat
-			let j=i;
-			while (j > 0 && ptScoreDefault[--j].time === event.time) i=j;
-			eventIndex = i;
-
+			nextMarker = event;
 			break;
 		}
 	}
-
+	
+  // set eventIndex (= where to start the playback)
+  eventIndex = 0;
+	while(ptScoreDefault[eventIndex].time < time) eventIndex++;
+	
+	// set firstBeatIndex (= where to start the conducting)
+	firstBeatIndex = eventIndex;
+	if(nextMarker) {
+		while(ptScoreDefault[firstBeatIndex].time < nextMarker.time) firstBeatIndex++;
+	}
+	
 	//collect all events to be executed before start.
 	for(let i=0; i<ptScoreDefault.length; i++) {
 		let event = ptScoreDefault[i];
-		if(nextDownBeat && event.time > nextDownBeat.time) break;
+		if(event.time > time) break;
 
-		if(event.type === "image" || event.type === "text") regionsBeforeStart[event.regionID] = event;
-		else if(event.type === "marker") lastMarker = event;
-		else if(event.type === "beat") continue;
+		if(event.type == "image" || event.type == "text") regionsBeforeStart[event.regionID] = event;
+		else if(event.type == "marker" ||event.type == "beat" || event.type == "audio") continue;
 		else eventsBeforeStart.push(event);
 	}
 
 	//execute all collected events
-	if(lastMarker) eventsBeforeStart.push(lastMarker);
+	if(nextMarker) eventsBeforeStart.push(nextMarker);
 	for(const key in regionsBeforeStart) {
 		eventsBeforeStart.push(regionsBeforeStart[key])
 	}	
@@ -377,12 +381,15 @@ function run() {
 	let event = ptScoreDefault[eventIndex];
 
 	while(isRunning && event && time >= event.time) {	
-		if(event.type === "beat") {
+		if(event.type == "beat") {
 			if(event.pattern < 20) lastDownbeatTime = event.time; // store last downbeat
-			event.durationFactor = tempoFactor;
-		}			
-		event.timeTag = getTime();
-		executeEvent(event);
+				event.durationFactor = tempoFactor;
+		}
+		
+		if(event.type != "beat" || firstBeatIndex < eventIndex) {		
+			event.timeTag = getTime();
+			executeEvent(event);
+		}
 		event = ptScoreDefault[++eventIndex];
 	}
 
@@ -697,7 +704,6 @@ function audio(event) {
 
 let ptScoreInit;
 const ptScoreDefault = [];
-let eventIndex;
 const regionEvents = {};
 
 
