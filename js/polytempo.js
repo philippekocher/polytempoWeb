@@ -546,6 +546,10 @@ function executeEvent(event) {
 		
 		else if(event.type == "loadImage") loadImage(event);
 		
+		else if(event.type == "loadAudio") loadAudio(event);
+		
+		else if(event.type == "audio") audio(event);
+		
 		else if(event.type == "addRegion") regions[event.regionID] = event;
 		
 		else if(event.type == "addSection") addSection(event);
@@ -668,6 +672,23 @@ function text(event) {
 	regionContext.textBaseline = 'hanging';
 	regionContext.font = (region[3]) + 'px serif';
 	regionContext.fillText(event.value,region[0],region[1],region[2]);
+}
+
+/* ----------------------------------------------------------------------
+	sounds
+	------------------------------------------------------------------------*/
+
+const audioSources = {};
+
+function loadAudio(event) {                   
+		audioSources[event.audioID] = documentDirectory+root+event.url;
+}
+
+function audio(event) {
+	const audio = new Audio();
+	audio.src = audioSources[event.audioID];
+	audio.volume = event.gain ? event.gain : 1.0;
+	audio.play();
 }
 
 /* ----------------------------------------------------------------------
