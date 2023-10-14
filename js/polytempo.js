@@ -358,7 +358,7 @@ function jumpToTime(time) {
 	}
 
 	//execute all collected events
-	if(startEvent) eventsBeforeStart.push(startEvent);
+	if(startEvent && startEvent.type == "marker") eventsBeforeStart.push(startEvent);
 	for(const key in regionsBeforeStart) {
 		eventsBeforeStart.push(regionsBeforeStart[key])
 	}	
@@ -387,7 +387,7 @@ function run() {
 				event.durationFactor = tempoFactor;
 		}
 		
-		if(event.type != "beat" || firstBeatIndex < eventIndex) {		
+		if(event.type != "beat" || firstBeatIndex <= eventIndex) {		
 			event.timeTag = getTime();
 			executeEvent(event);
 		}
