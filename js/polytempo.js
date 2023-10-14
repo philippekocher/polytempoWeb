@@ -324,14 +324,15 @@ function jumpToTime(time) {
 
 	let eventsBeforeStart = [];
 	let regionsBeforeStart = {};
-	let nextMarker;
+	let startEvent;
 
-	// find next marker
+	// find next marker or cue in
 	for(let i=0; i<ptScoreDefault.length; i++) {
 		let event = ptScoreDefault[i];
-		if(event.time >= time && event.type == "marker")
+		if((event.time >= time && event.type == "marker") ||
+			 (event.time >= time && event.type == "beat" && event.cue))
 		{
-			nextMarker = event;
+			startEvent = event;
 			break;
 		}
 	}
@@ -342,8 +343,8 @@ function jumpToTime(time) {
 	
 	// set firstBeatIndex (= where to start the conducting)
 	firstBeatIndex = eventIndex;
-	if(nextMarker) {
-		while(ptScoreDefault[firstBeatIndex].time < nextMarker.time) firstBeatIndex++;
+	if(startEvent) {
+		while(ptScoreDefault[firstBeatIndex].time < startEvent.time) firstBeatIndex++;
 	}
 	
 	//collect all events to be executed before start.
@@ -357,7 +358,7 @@ function jumpToTime(time) {
 	}
 
 	//execute all collected events
-	if(nextMarker) eventsBeforeStart.push(nextMarker);
+	if(startEvent) eventsBeforeStart.push(startEvent);
 	for(const key in regionsBeforeStart) {
 		eventsBeforeStart.push(regionsBeforeStart[key])
 	}	
